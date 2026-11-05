@@ -5,6 +5,7 @@ description = "A fast, friendly todo manager for the terminal, with due dates an
 repository = "https://github.com/HemashreeVI/ferrodo"
 license = "MIT"
 edition = "2024"
+rust-version = "1.88"
 
 [dependencies]
 chrono = { version = "0.4.45", default-features = false, features = ["clock", "serde", "std"] }

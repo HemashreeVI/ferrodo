@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="292" viewBox="0 0 860 292" role="img" aria-label="keys">
+<defs><clipPath id="r"><rect width="860" height="292" rx="12"/></clipPath></defs>
+<g clip-path="url(#r)">
+<rect width="860" height="292" fill="#11141c"/>
+<rect width="860" height="38" fill="#1b1f2b"/>
+<circle cx="22" cy="19" r="6.5" fill="#ff5f57"/><circle cx="44" cy="19" r="6.5" fill="#febc2e"/><circle cx="66" cy="19" r="6.5" fill="#28c840"/>
+<text x="430.0" y="24" text-anchor="middle" font-family="'JetBrains Mono','SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace" font-size="13" fill="#8b93a7">keys</text>
+</g>
+<rect x=".5" y=".5" width="859" height="291" rx="12" fill="none" stroke="#2a3040"/>
+<g font-family="'JetBrains Mono','SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace" font-size="15">
+<text x="28" y="74" xml:space="preserve"><tspan fill="#ff8a5c">~/projects</tspan><tspan fill="#7ee787" font-weight="700"> ❯ </tspan><tspan fill="#d7dce6">ferrodo   # then press…</tspan></text>
+<text x="34" y="110" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">↑ ↓  j k</tspan></text>
+<text x="148" y="110" xml:space="preserve"><tspan fill="#d7dce6">move</tspan></text>
+<text x="440.0" y="110" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">g G</tspan></text>
+<text x="510.0" y="110" xml:space="preserve"><tspan fill="#d7dce6">jump to top / bottom</tspan></text>
+<text x="34" y="138" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">a</tspan></text>
+<text x="148" y="138" xml:space="preserve"><tspan fill="#d7dce6">add a task</tspan></text>
+<text x="440.0" y="138" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">e</tspan></text>
+<text x="510.0" y="138" xml:space="preserve"><tspan fill="#d7dce6">edit the task</tspan></text>
+<text x="34" y="166" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">space</tspan></text>
+<text x="148" y="166" xml:space="preserve"><tspan fill="#d7dce6">mark done / not done</tspan></text>
+<text x="440.0" y="166" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">t</tspan></text>
+<text x="510.0" y="166" xml:space="preserve"><tspan fill="#d7dce6">set the due date</tspan></text>
+<text x="34" y="194" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">+ -</tspan></text>
+<text x="148" y="194" xml:space="preserve"><tspan fill="#d7dce6">raise / lower priority</tspan></text>
+<text x="440.0" y="194" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">d</tspan></text>
+<text x="510.0" y="194" xml:space="preserve"><tspan fill="#d7dce6">delete (y to confirm)</tspan></text>
+<text x="34" y="222" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">h</tspan></text>
+<text x="148" y="222" xml:space="preserve"><tspan fill="#d7dce6">hide / show finished</tspan></text>
+<text x="440.0" y="222" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">c</tspan></text>
+<text x="510.0" y="222" xml:space="preserve"><tspan fill="#d7dce6">clear finished tasks</tspan></text>
+<text x="34" y="250" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">q</tspan></text>
+<text x="148" y="250" xml:space="preserve"><tspan fill="#d7dce6">quit</tspan></text>
+<text x="440.0" y="250" xml:space="preserve"><tspan fill="#5ce1e6" font-weight="700">esc</tspan></text>
+<text x="510.0" y="250" xml:space="preserve"><tspan fill="#d7dce6">cancel / quit</tspan></text>
+</g>
+</svg>

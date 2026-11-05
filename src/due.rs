@@ -3,7 +3,7 @@
 
 use chrono::{Datelike, Days, Local, Months, NaiveDate, Weekday};
 
-pub const HELP: &str = "today, tomorrow, fri, 3d, 2w, 1m, dec 24, 2026-12-24 (empty clears)";
+pub const HELP: &str = "today, fri, 3d, 2w, dec 24, 2026-12-24 · empty clears";
 
 pub fn today() -> NaiveDate {
     Local::now().date_naive()

@@ -13,6 +13,8 @@ use std::io;
 use std::path::PathBuf;
 
 const ACCENT: Color = Color::Cyan;
+/// A dark grey from the 256-colour palette, so grey text stays readable on the selected row.
+const SELECTED_BG: Color = Color::Indexed(237);
 
 /// Runs the app until the user quits. Restores the terminal even on error or panic.
 pub fn run(store: Store, path: PathBuf) -> io::Result<()> {
@@ -353,11 +355,7 @@ impl App {
         let items: Vec<ListItem> = tasks.iter().map(|t| task_item(t, today)).collect();
         let list = List::new(items)
             .block(block)
-            .highlight_style(
-                Style::new()
-                    .bg(Color::DarkGray)
-                    .add_modifier(Modifier::BOLD),
-            )
+            .highlight_style(Style::new().bg(SELECTED_BG).add_modifier(Modifier::BOLD))
             .highlight_symbol("▌ ");
         let mut state = ListState::default().with_selected(Some(self.selected));
         frame.render_stateful_widget(list, area, &mut state);
@@ -386,9 +384,17 @@ impl App {
             if matches!(self.mode, Mode::ConfirmDelete(_)) {
                 spans.push("Delete this task? ".red().bold());
             }
+            // Show as many hints as fit whole, rather than cutting one off mid-word.
+            let mut used: usize = spans.iter().map(|s| s.width()).sum();
             for (k, label) in keys {
+                let hint = format!(" {label}   ");
+                let width = k.chars().count() + label.chars().count() + 1;
+                if used + width > area.width as usize {
+                    break;
+                }
+                used += width + 3;
                 spans.push(k.bold().fg(ACCENT));
-                spans.push(format!(" {label}   ").dark_gray());
+                spans.push(hint.dark_gray());
             }
             Line::from(spans)
         };
@@ -456,7 +462,15 @@ fn draw_input(frame: &mut Frame, title: &str, hint: &str, text: &str, cursor: us
         .border_type(BorderType::Rounded)
         .border_style(Style::new().fg(ACCENT))
         .title(title.bold())
-        .title_bottom(Line::from(hint).dark_gray().right_aligned());
+        .title_bottom(
+            Line::from(if hint.is_empty() {
+                String::new()
+            } else {
+                format!(" {hint} ")
+            })
+            .dark_gray()
+            .right_aligned(),
+        );
     let inner = block.inner(popup);
 
     // Scroll horizontally so the cursor always stays visible.
