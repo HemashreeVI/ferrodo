@@ -1,0 +1,69 @@
+# Builds ferrodo for Linux, macOS and Windows and publishes a GitHub release.
+# Actions → Release → Run workflow (it tags main as v<version from Cargo.toml>).
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest,  target: x86_64-unknown-linux-gnu, asset: ferrodo-linux-x86_64.tar.gz }
+          - { os: macos-latest,   target: aarch64-apple-darwin,     asset: ferrodo-macos-arm64.tar.gz }
+          - { os: windows-latest, target: x86_64-pc-windows-msvc,   asset: ferrodo-windows-x86_64.zip }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo build --release --locked --target ${{ matrix.target }}
+      - name: Package
+        shell: bash
+        run: |
+          cd target/${{ matrix.target }}/release
+          if [[ "${{ matrix.asset }}" == *.zip ]]; then 7z a "$GITHUB_WORKSPACE/${{ matrix.asset }}" ferrodo.exe >/dev/null
+          else tar czf "$GITHUB_WORKSPACE/${{ matrix.asset }}" ferrodo; fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset }}
+          path: ${{ matrix.asset }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v=v$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)
+          cat > notes.md <<'NOTES'
+          ## Install
+
+          **Download** the file for your system below, unpack it and put `ferrodo` on your PATH:
+
+          | System | File |
+          |---|---|
+          | Linux (x86_64) | `ferrodo-linux-x86_64.tar.gz` |
+          | macOS (Apple Silicon) | `ferrodo-macos-arm64.tar.gz` |
+          | Windows (x86_64) | `ferrodo-windows-x86_64.zip` |
+
+          Or build it yourself: `cargo install --git https://github.com/${{ github.repository }}`
+          NOTES
+          gh release create "$v" --target "$GITHUB_SHA" dist/* --title "ferrodo $v" --notes-file notes.md

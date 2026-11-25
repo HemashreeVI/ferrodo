@@ -19,6 +19,10 @@
   <img src="assets/features.svg" width="860" alt="Features: full-screen app, natural due dates, smart order, priorities, saved instantly, scriptable.">
 </p>
 
+<p align="center"><a href="https://github.com/HemashreeVI/ferrodo/releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87_Download-Linux_%C2%B7_macOS_%C2%B7_Windows-2ea44f?style=for-the-badge&logo=rust&logoColor=white" alt="%E2%AC%87 Download-Linux %C2%B7 macOS %C2%B7 Windows"></a></p>
+
+> **No Rust needed:** grab the ready-to-run binary for your system from the [latest release](https://github.com/HemashreeVI/ferrodo/releases/latest), unpack it and run `ferrodo`.
+
 ## `❯ install`
 
 You need [Rust](https://rustup.rs) 1.88 or newer.
